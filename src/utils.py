@@ -1,8 +1,6 @@
-from ucimlrepo import fetch_ucirepo
-from numpy.typing import NDArray
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.datasets import make_blobs
+from sklearn.datasets import make_blobs, make_circles, make_moons
 
 
 def map_class_labels(y_train):
@@ -13,20 +11,20 @@ def map_class_labels(y_train):
     transformed_y_train = transformed_y_train.astype(int)
     return transformed_y_train, classes
 
-def load_abalone_data(train_proportion = 0.7) -> tuple[NDArray, NDArray, NDArray, NDArray]:
-
-    abalone = fetch_ucirepo(id=1) 
-    
-    X = abalone.data.features
-    X = X.drop(["Sex"], axis=1)
-    y = abalone.data.targets
-
-    nearest_int = int(X.shape[0]*train_proportion)
-    
-    return X[:nearest_int].values, X[nearest_int:].values, y[:nearest_int].values.reshape(-1), y[nearest_int:].values.reshape(-1)
-
-def generate_synthetic_data(centers):
-    return make_blobs(n_samples=80, centers=2, n_features=centers, random_state=12, cluster_std=3.1)
+def generate_spiral(n_points):
+    np.random.seed(0)
+    X = []
+    y = []
+    for class_number in range(2):
+        r = np.linspace(0.0, 1, n_points)
+        t = np.linspace(class_number * np.pi, class_number * np.pi + 2 * np.pi, n_points) + np.random.randn(n_points) * 0.5
+        dx = r * np.sin(t)
+        dy = r * np.cos(t)
+        X.extend(np.c_[dx, dy])
+        y.extend([class_number] * n_points)
+    X = np.array(X)
+    y = np.array(y)
+    return X, y
 
 def red_blue_gradient(y_pred):
     result = []
@@ -38,8 +36,20 @@ def red_blue_gradient(y_pred):
         result.append(col)
     return result
 
-def visualise_synthetic(model, title):
-    X, y = generate_synthetic_data(centers=2)
+def visualise_synthetic(model, title, dataset="overlapping_blobs"):
+    if dataset == "separable_blobs":
+        X, y = make_blobs(n_samples=80, centers=2, n_features=2, random_state=1, cluster_std=1.5)
+    elif dataset == "overlapping_blobs":
+        X, y = make_blobs(n_samples=80, centers=2, n_features=2, random_state=12, cluster_std=3.1)
+    elif dataset == "circles":
+        X, y = make_circles(80, random_state=5, noise=0.1, factor=0.6)
+    elif dataset == "moons":
+        X, y = make_moons(80, random_state=2, noise=0.15)
+    elif dataset == "spiral":
+        X, y = generate_spiral(80)
+    else:
+        raise Exception("The 'dataset' argument to 'visualise_synthetic' must be one of ['separable_blobs', 'overlapping_blobs', 'circles', 'moons', 'spiral'].")
+    
     feature_1 = np.linspace(X[:, 0].min(), X[:, 0].max(), 325)
     feature_2 = np.linspace(X[:, 1].min(), X[:, 1].max(), 325)
     grid_1, grid_2 = np.meshgrid(feature_1, feature_2)
@@ -56,7 +66,6 @@ def visualise_synthetic(model, title):
     ax1.scatter(X[:, 0], X[:, 1], c=[(1, 0, 0) if point == 0 else (0, 0, 1) for point in list(y)], edgecolor='k', s=40, linewidth=1)
     ax1.set_xlabel("Feature 1")
     ax1.set_ylabel("Feature 2")
-    ax1.set_aspect('equal', adjustable='box')
 
     y_pred = fit_model.predict(X_test)
     ax2.set_title("Class Prediction")
@@ -64,6 +73,5 @@ def visualise_synthetic(model, title):
     ax2.scatter(X[:, 0], X[:, 1], c=[(1, 0, 0) if point == 0 else (0, 0, 1) for point in list(y)], edgecolor='k', s=40)
     ax2.set_xlabel("Feature 1")
     ax2.set_ylabel("Feature 2")
-    ax2.set_aspect('equal', adjustable='box')
 
     plt.show()

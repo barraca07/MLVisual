@@ -16,7 +16,7 @@ The algorithms currently implemented are:
 
 The `visualise_synthetic` function in `utils.py` allows algorithm probability and class predictions to be visualised using a synthetic 2D binary classification dataset. It is used as follows:
 
-`visualise_synthetic(model, title)` - Create the model visualisation
+`visualise_synthetic(model, title, dataset)` - Create the model visualisation
 
     Parameters:
 
@@ -26,7 +26,10 @@ The `visualise_synthetic` function in `utils.py` allows algorithm probability an
     `title` : str
         - Figure title
 
-### Example
+    `dataset` : str
+        - The dataset to use for visualisation. Must be one of 'separable_blobs', 'overlapping_blobs', 'circles', 'moons' or 'spiral'.
+
+### Example 1
 
 ```python
 from NearestNeighbours import NearestNeighbours
@@ -34,12 +37,21 @@ from utils import visualise_synthetic
 
 knn_model = NearestNeighbours(k=9)
 
-visualise_synthetic(knn_model, "KNN")
+visualise_synthetic(knn_model, "KNN", 'overlapping_blobs')
 ```
-
-produces the output:
-
 <img src="static/knn_example.png"/>
+
+### Example 2
+
+```python
+from NeuralNetwork import NeuralNetwork
+from utils import visualise_synthetic
+
+neural_network = NeuralNetwork(hidden_shape=[7, 7], learning_rate=1e-3, epochs=100000)
+
+visualise_synthetic(neural_network, "Neural Network", "spiral")
+```
+<img src="static/neural_network_example.png"/>
 
 ## Algorithms Usage
 
