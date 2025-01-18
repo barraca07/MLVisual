@@ -2,7 +2,7 @@
 
 import numpy as np
 from typing import Self
-from utils import map_class_labels
+from .utils import map_class_labels
 
 class LogisticRegression:
     def __init__(self, learning_rate: float=0.01, tolerance: float=1e-4, max_itr: int=10000) -> None:

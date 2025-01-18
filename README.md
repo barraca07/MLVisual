@@ -37,11 +37,11 @@ Parameters:
 
 ```python
 from algorithms import KNearestNeighbors
-from utils import visualise_synthetic
+from visualisation import visualise
 
 knn = KNearestNeighbors(k=9)
 
-visualise_synthetic(knn, "KNN", 'overlapping_blobs')
+visualise(knn, "KNN", 'overlapping_blobs')
 ```
 <img src="static/knn_example.png"/>
 
@@ -49,11 +49,11 @@ visualise_synthetic(knn, "KNN", 'overlapping_blobs')
 
 ```python
 from algorithms import NeuralNetwork
-from utils import visualise_synthetic
+from visualisation import visualise
 
 neural_network = NeuralNetwork(hidden_shape=[7, 7], learning_rate=1e-3, epochs=100000)
 
-visualise_synthetic(neural_network, "Neural Network", "spiral")
+visualise(neural_network, "Neural Network", "spiral")
 ```
 <img src="static/neural_network_example.png"/>
 

@@ -9,7 +9,7 @@ class KNearestNeighbors:
         Initialise the KNN model.
 
         Args:
-            k (int): The number of neighbours to consider for each test point.
+            k (int): The number of neighbors to consider for each test point.
         """
 
         self.k = k

@@ -2,7 +2,7 @@
 
 import numpy as np
 from typing import Self
-from utils import map_class_labels
+from .utils import map_class_labels
 
 class Node:
     """

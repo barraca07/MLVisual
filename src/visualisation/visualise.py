@@ -2,9 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import make_blobs, make_circles, make_moons
 
-from utils import generate_spiral, red_blue_gradient
-
-
 def visualise(model, fig_title, dataset="overlapping_blobs"):
     if dataset == "separable_blobs":
         X, y = make_blobs(n_samples=80, centers=2, n_features=2, random_state=1, cluster_std=1.5)
@@ -44,3 +41,28 @@ def visualise(model, fig_title, dataset="overlapping_blobs"):
     ax2.set_ylabel("Feature 2")
 
     plt.show()
+
+def generate_spiral(n_points):
+    np.random.seed(0)
+    X = []
+    y = []
+    for class_number in range(2):
+        r = np.linspace(0.0, 1, n_points)
+        t = np.linspace(class_number * np.pi, class_number * np.pi + 2 * np.pi, n_points) + np.random.randn(n_points) * 0.5
+        dx = r * np.sin(t)
+        dy = r * np.cos(t)
+        X.extend(np.c_[dx, dy])
+        y.extend([class_number] * n_points)
+    X = np.array(X)
+    y = np.array(y)
+    return X, y
+
+def red_blue_gradient(y_pred):
+    result = []
+    for point in list(y_pred):
+        if point <= 0.5:
+            col = (1, 0.25+3/2*point, 0.25+3/2*point)
+        else:
+            col = (1.75-3/2*point, 1.75-3/2*point, 1)
+        result.append(col)
+    return result

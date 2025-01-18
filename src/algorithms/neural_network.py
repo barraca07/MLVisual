@@ -1,6 +1,6 @@
 import numpy as np
 from typing import Self, Callable
-from utils import map_class_labels
+from .utils import map_class_labels
 
 class NeuralNetwork:
     def __init__(self, hidden_shape: list[int]=[8, 8], learning_rate: float= 1e-2, epochs: int= 10) -> None:
