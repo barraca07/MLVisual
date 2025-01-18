@@ -4,7 +4,7 @@ This repository contains concise, prototype NumPy implementations of common mach
 
 The algorithms currently implemented are:
 * Logistic Regression
-* K-Nearest Neighbours
+* K-Nearest Neighbors
 * Naive Bayes
 * Decision Tree
 * Random Forest
@@ -22,7 +22,7 @@ The `visualise_synthetic` function in `utils.py` allows model probability and cl
 
 Parameters:
 
-`model` (LogisticRegression | NearestNeightbours | NaiveBayes | DecisionTree | RandomForest | AdaBoost | SupportVectorMachine | NeuralNetwork)
+`model` (LogisticRegression | NearestNeightbors | NaiveBayes | DecisionTree | RandomForest | AdaBoost | SupportVectorMachine | NeuralNetwork)
     - Instance of model class with methods `fit`, `predict_proba` and `predict`
 
 `title` (str)
@@ -36,19 +36,19 @@ Parameters:
 ### Example 1
 
 ```python
-from NearestNeighbours import NearestNeighbours
+from algorithms import KNearestNeighbors
 from utils import visualise_synthetic
 
-knn_model = NearestNeighbours(k=9)
+knn = KNearestNeighbors(k=9)
 
-visualise_synthetic(knn_model, "KNN", 'overlapping_blobs')
+visualise_synthetic(knn, "KNN", 'overlapping_blobs')
 ```
 <img src="static/knn_example.png"/>
 
 ### Example 2
 
 ```python
-from NeuralNetwork import NeuralNetwork
+from algorithms import NeuralNetwork
 from utils import visualise_synthetic
 
 neural_network = NeuralNetwork(hidden_shape=[7, 7], learning_rate=1e-3, epochs=100000)
