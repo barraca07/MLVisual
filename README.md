@@ -1,6 +1,6 @@
 # MLVisual: Machine Learning Algorithm Visualiser
 
-This repository contains concise, prototype NumPy implementations of common machine learning classification algorithms and a tool for visualising the performance of the algorithms using a simple dataset with two input features. The aim is to provide a resource for facilitating an intuitive understanding of how these algorithms work and how they can be practically implemented in code.
+This repository contains concise, prototype NumPy implementations of common machine learning classification algorithms and a tool for visualising the performance of the algorithms using several simple synthetic datasets. The aim is to provide a resource for facilitating an intuitive understanding of how these algorithms work and how they can be practically implemented in code.
 
 The algorithms currently implemented are:
 * Logistic Regression
@@ -14,7 +14,7 @@ The algorithms currently implemented are:
 
 ## Visualiser Usage
 
-The `visualise_synthetic` function in `utils.py` allows algorithm probability and class predictions to be visualised using a synthetic 2D binary classification dataset. It is used as follows:
+The `visualise_synthetic` function in `utils.py` allows model probability and class predictions to be visualised using a choice of synthetic 2D binary classification datasets. It is used as follows:
 
 ----
 
@@ -68,7 +68,7 @@ Each of the algorithms is implemented using a dedicated class with the following
 Parameters:
 
 `X_train` (np.ndarray)
-    - Training data of shape (n_samples, m_features)
+    - Training data of shape (n_samples, n_features)
 
 `y_train` (np.ndarray)
     - Target values of shape (n_samples,)
@@ -80,12 +80,26 @@ Returns:
 
 ----
 
+**`predict_proba(X_test)`** - Predict the class probabilities for the test data.
+
+Parameters:
+
+`X_test` (np.ndarray)
+    - Test data of shape (n_samples, n_features)
+
+Returns:
+
+`pred_probs`: (np.ndarray)
+    - Predicted class probabilities of shape (n_classes, n_samples).
+
+----
+
 **`predict(X_test)`** - Predict the target variable for the test data.
 
 Parameters:
 
 `X_test` (np.ndarray)
-    - Test data of shape (n_samples, m_features)
+    - Test data of shape (n_samples, n_features)
 
 Returns:
 
