@@ -14,22 +14,22 @@ The algorithms currently implemented are:
 
 ## Visualiser Usage
 
-The `visualise_synthetic` function in `utils.py` allows model probability and class predictions to be visualised using a choice of synthetic 2D binary classification datasets. It is used as follows:
+The `visualise` function allows model probability and class predictions to be visualised using a choice of several synthetic 2D binary classification datasets. It is used as follows:
 
 ----
 
-**`visualise_synthetic(model, title, dataset)`** - Create the model visualisation
+**`visualise(model, fig_title, dataset)`** - Create the model visualisation
 
 Parameters:
 
 `model` (LogisticRegression | NearestNeightbors | NaiveBayes | DecisionTree | RandomForest | AdaBoost | SupportVectorMachine | NeuralNetwork)
     - Instance of model class with methods `fit`, `predict_proba` and `predict`
 
-`title` (str)
+`fig_title` (str)
     - Figure title
 
 `dataset` (str)
-    - The dataset to use for visualisation. Must be one of 'separable_blobs', 'overlapping_blobs', 'circles', 'moons' or 'spiral'.
+    - The dataset to use for visualisation. It must be one of 'separable_blobs', 'overlapping_blobs', 'circles', 'moons' or 'spiral'.
 
 ----
 
