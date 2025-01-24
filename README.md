@@ -14,7 +14,7 @@ The algorithms currently implemented are:
 
 ## Visualiser Usage
 
-The `visualise` function allows model probability and class predictions to be visualised using a choice of synthetic 2D binary classification datasets. It is used as follows:
+The `visualise` function allows model probability and class predictions to be visualised using a choice of several synthetic 2D binary classification datasets. It is used as follows:
 
 ----
 
@@ -26,7 +26,7 @@ Parameters:
     - Instance of model class with methods `fit`, `predict_proba` and `predict`
 
 `dataset` (str)
-    - The dataset to use for visualisation. Must be one of 'separable_blobs', 'overlapping_blobs', 'circles', 'moons' or 'spiral'.
+    - The dataset to use for visualisation. It must be one of 'separable_blobs', 'overlapping_blobs', 'circles', 'moons' or 'spiral'.
 
 ----
 
