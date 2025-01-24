@@ -14,19 +14,16 @@ The algorithms currently implemented are:
 
 ## Visualiser Usage
 
-The `visualise_synthetic` function in `utils.py` allows model probability and class predictions to be visualised using a choice of synthetic 2D binary classification datasets. It is used as follows:
+The `visualise` function allows model probability and class predictions to be visualised using a choice of synthetic 2D binary classification datasets. It is used as follows:
 
 ----
 
-**`visualise_synthetic(model, title, dataset)`** - Create the model visualisation
+**`visualise(model, dataset)`** - Create the model visualisation
 
 Parameters:
 
 `model` (LogisticRegression | NearestNeightbors | NaiveBayes | DecisionTree | RandomForest | AdaBoost | SupportVectorMachine | NeuralNetwork)
     - Instance of model class with methods `fit`, `predict_proba` and `predict`
-
-`title` (str)
-    - Figure title
 
 `dataset` (str)
     - The dataset to use for visualisation. Must be one of 'separable_blobs', 'overlapping_blobs', 'circles', 'moons' or 'spiral'.
@@ -41,7 +38,7 @@ from visualisation import visualise
 
 knn = KNearestNeighbors(k=9)
 
-visualise(knn, "KNN", 'overlapping_blobs')
+visualise(knn, 'overlapping_blobs')
 ```
 <img src="static/knn_example.png"/>
 
@@ -51,9 +48,9 @@ visualise(knn, "KNN", 'overlapping_blobs')
 from algorithms import NeuralNetwork
 from visualisation import visualise
 
-neural_network = NeuralNetwork(hidden_shape=[7, 7], learning_rate=1e-3, epochs=100000)
+neural_network = NeuralNetwork(hidden_shape=[6, 6], learning_rate=1e-3, epochs=100000)
 
-visualise(neural_network, "Neural Network", "spiral")
+visualise(neural_network, "spiral")
 ```
 <img src="static/neural_network_example.png"/>
 
